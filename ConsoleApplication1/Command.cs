@@ -47,29 +47,11 @@ namespace ConsoleApplication1
                 switch (transformation)
                 {
                     case "translate":
-                        if (param.Count(x => x == ',') == 1)
-                        {
-                            int x = 0;
-                            int y = 0;
+                        List<int> lst = validate2Args(param);
 
-                            if ((int) getDigits(param, 0, param.IndexOf(","))[1] == 1)
-                            {
-                                x = (int) getDigits(param, 0, param.IndexOf(","))[0];
-                                if ((int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[1] == 1)
-                                {
-                                    y = (int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[0];
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid input");
-                                    break;
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid input");
-                            }
-                            pt.translate(x, y);
+                        if (lst.Count() == 2)
+                        {
+                            pt.translate(lst[0], lst[1]);
                         }
                         else
                         {
@@ -79,13 +61,59 @@ namespace ConsoleApplication1
 
                     case "rotate":
                         Console.WriteLine("rotate command");
+                        List<int> lst1 = validate3Args(param);
+                        if (lst1.Count() == 3)
+                        {
+                            pt.rotate(lst1[0], lst1[1], lst1[2]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input");
+                        }
                         break;
                     case "scale":
                         Console.WriteLine("scale command");
+                        List<int> lst2 = validate3Args(param);
+                        if (lst2.Count() == 3)
+                        {
+                            pt.scale(lst2[0], lst2[1], lst2[2]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input");
+                        }
                         break;
                     case "reflect":
                         Console.WriteLine("reflect command");
+                        String axis = "";
+                        foreach (char c in param)
+                        {
+                            if (c == 'x' || c == 'y')
+                            {
+                                axis += c;
+                            }
+                        }
+                        if (axis.Length == 1) 
+                        {
+                            if (axis.ToLower() == "x")
+                            {
+                                pt.reflect('x');
+                            }
+                            else if (axis.ToLower() == "y")
+                            {
+                                pt.reflect('y');
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input");
+                        }
                         break;
+
                     case "finish":
                         Console.Write("\nResult: ");
                         Console.WriteLine("(" + pt.getX() + ", " + pt.getY() + ")");
@@ -143,5 +171,78 @@ namespace ConsoleApplication1
             
         }
 
+        /*
+         * Validates the parameters for a transformation that takes 2 arguments.
+         * 
+         * Parameters:
+         *  param (String) - the string that contains the arguments
+         *  
+         * Return:
+         *  List<int> - a list containing the validated arguments as ints
+         */ 
+        public List<int> validate2Args(String param)
+        {
+            if (param.Count(x => x == ',') == 1)
+            {
+                int x = 0;
+                int y = 0;
+
+                if ((int)getDigits(param, 0, param.IndexOf(","))[1] == 1)
+                {
+                    x = (int)getDigits(param, 0, param.IndexOf(","))[0];
+                    if ((int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[1] == 1)
+                    {
+                        y = (int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[0];
+                        List<int> lst = new List<int>();
+                        lst.Add(x);
+                        lst.Add(y);
+                        return lst;
+                    }
+                }
+            }
+            return new List<int>();
+        }
+
+                /*
+        * Validates the parameters for a transformation that takes 3 arguments.
+        * 
+        * Parameters:
+        *  param (String) - the string that contains the arguments
+        *  
+        * Return:
+        *  List<int> - a list containing the validated arguments as ints
+        */ 
+        public List<int> validate3Args(String param)
+        {
+            if (param.Count(x => x == ',') == 2)
+            {
+                int x = 0;
+                int y = 0;
+                int z = 0;
+                String[] s = param.Split(',');
+
+                if ((int)getDigits(s[0], 0, s[0].Length)[1] == 1)
+                {
+
+                    x = (int)getDigits(s[0], 0, s[0].Length)[0];
+                    if ((int)getDigits(s[1], 0, s[1].Length)[1] == 1)
+                    {
+                        y = (int)getDigits(s[1], 0, s[1].Length)[0];
+                        if ((int)getDigits(s[2], 0, s[2].Length)[1] == 1)
+                        {
+                            z = (int)getDigits(s[2], 0, s[2].Length)[0];
+                            List<int> lst = new List<int>();
+                            lst.Add(x);
+                            lst.Add(y);
+                            lst.Add(z);
+                            return lst;                            
+                        }
+                    }
+                }
+            }
+            return new List<int>();
+        }
     }
+
 }
+

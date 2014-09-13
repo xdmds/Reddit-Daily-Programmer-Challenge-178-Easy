@@ -54,7 +54,7 @@ namespace ConsoleApplication1
          */ 
         public void rotate(int a, int b, int c)
         {
-
+            Console.WriteLine("rotate command called with (" + a + ", " + b + ", " + c + ")");
         }
 
         /*
@@ -67,7 +67,7 @@ namespace ConsoleApplication1
          */ 
         public void scale(int a, int b, int c)
         {
-
+            Console.WriteLine("scale command called with (" + a + ", " + b + ", " + c + ")");
         }
 
         /*
@@ -78,7 +78,7 @@ namespace ConsoleApplication1
          */ 
         public void reflect(char axis)
         {
-
+            Console.WriteLine("reflect command called for " + axis + " axis");
         }
 
         /*
