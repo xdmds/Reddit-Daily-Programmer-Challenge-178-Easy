@@ -62,7 +62,12 @@ namespace ConsoleApplication1
             } else {
                 if (input.ToLower().Equals("help"))
                 {
-                    Console.WriteLine("help command");
+                    Console.WriteLine("\nEnter one of the commands in the given format:");
+                    Console.WriteLine("translate(A, B)");
+                    Console.WriteLine("rotate(A, B, C)");
+                    Console.WriteLine("scale(A, B, C)");
+                    Console.WriteLine("reflect(axis)");
+                    Console.WriteLine("finish()\n");
                 }
                 else
                 {
