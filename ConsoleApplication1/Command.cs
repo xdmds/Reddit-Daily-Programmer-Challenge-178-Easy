@@ -9,12 +9,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace ConsoleApplication1
 {
     class Command
     {
         private String input;
+        private Point pt;
         
         /*
          * Constructs a Command object with the input string from the console
@@ -22,9 +24,10 @@ namespace ConsoleApplication1
          * Parameters:
          *  input (String) - the user input from the console
          */ 
-        public Command(String input)
+        public Command(String input, Point pt)
         {
             this.input = input;
+            this.pt = pt;
         }
 
         /*
@@ -34,15 +37,46 @@ namespace ConsoleApplication1
         public void parseInput()
         {
             String transformation = "";
-            if (input.Contains("(") && input.Contains(")")){
+            if ( (input.Count(x => x == '(') == 1) && (input.Count(x => x == ')') == 1) )
+            {
                 int i = input.IndexOf("(");
+                int i2 = input.IndexOf(")");
                 transformation = input.Substring(0, i).ToLower();
-
+                String param = "";
+                param = input.Substring(i, i2-i);
                 switch (transformation)
                 {
                     case "translate":
-                        Console.WriteLine("translate command");
+                        if (param.Count(x => x == ',') == 1 && param.Substring(0, param.IndexOf(",")).Length > 1 && param.Substring(param.IndexOf(","), param.Length - param.IndexOf(",")).Length > 1)
+                        {
+                            int x = 0;
+                            int y = 0;
+
+                            if ((int) getDigits(param, 0, param.IndexOf(","))[1] == 1)
+                            {
+                                x = (int) getDigits(param, 0, param.IndexOf(","))[0];
+                                if ((int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[1] == 1)
+                                {
+                                    y = (int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[0];
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid input");
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input");
+                            }
+                            pt.translate(x, y);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input");
+                        }
                         break;
+
                     case "rotate":
                         Console.WriteLine("rotate command");
                         break;
@@ -53,7 +87,8 @@ namespace ConsoleApplication1
                         Console.WriteLine("reflect command");
                         break;
                     case "finish":
-                        Console.WriteLine("finish command");
+                        Console.Write("\nResult: ");
+                        Console.WriteLine("(" + pt.getX() + ", " + pt.getY() + ")");
                         break;
                     default:
                         Console.WriteLine("Invalid input");
@@ -74,6 +109,38 @@ namespace ConsoleApplication1
                     Console.WriteLine("Invalid input");
                 }
             }
+        }
+
+        /*
+         * Iterates through the string to get the digits and return them as an ArrayList. Al
+         * 
+         * Parameters:
+         *  s (String) - the string
+         *  start (int) - the start index
+         *  end (int) - the end index
+         */
+        private ArrayList getDigits(String s, int start, int end)
+        {
+            String digits = "";
+            foreach (char c in s.Substring(start, end))
+            {
+                if (Char.IsDigit(c) || c == '-')
+                {
+                    digits += c;
+                }
+            }
+            ArrayList lst = new ArrayList();
+            if (digits.Length > 0){
+                lst.Add(Convert.ToInt32(digits));
+                lst.Add(1);
+            }
+            else
+            {
+                lst.Add(0);
+                lst.Add(0);
+            }
+            return lst;
+            
         }
 
     }

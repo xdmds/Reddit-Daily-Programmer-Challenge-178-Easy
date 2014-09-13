@@ -40,7 +40,8 @@ namespace ConsoleApplication1
          */ 
         public void translate(int a, int b)
         {
-
+            this.x = x + a;
+            this.y = y + b;
         }
 
         /*

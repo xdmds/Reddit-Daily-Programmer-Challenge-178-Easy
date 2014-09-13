@@ -19,16 +19,14 @@ namespace ConsoleApplication1
             String input = "";
             Console.WriteLine("Starting point:");
             start = Console.ReadLine();
+            Point pt = new Point(0, 0);
             Console.WriteLine("Enter commands. 1 per line. 'help' for info:");
             while (true)
             {
                 input = Console.ReadLine();
-                Command cmd = new Command(input);
+                Command cmd = new Command(input, pt);
                 cmd.parseInput();
             }            
-
-            //press enter to exit
-            Console.Read();
         }
     }
 }
