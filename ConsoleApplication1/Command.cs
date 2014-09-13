@@ -47,7 +47,7 @@ namespace ConsoleApplication1
                 switch (transformation)
                 {
                     case "translate":
-                        if (param.Count(x => x == ',') == 1 && param.Substring(0, param.IndexOf(",")).Length > 1 && param.Substring(param.IndexOf(","), param.Length - param.IndexOf(",")).Length > 1)
+                        if (param.Count(x => x == ',') == 1)
                         {
                             int x = 0;
                             int y = 0;
