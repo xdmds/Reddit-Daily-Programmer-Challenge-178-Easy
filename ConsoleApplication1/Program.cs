@@ -15,6 +15,20 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            String start = "";
+            String input = "";
+            Console.WriteLine("Starting point:");
+            start = Console.ReadLine();
+            Console.WriteLine("Enter commands. 1 per line. 'help' for info:");
+            while (true)
+            {
+                input = Console.ReadLine();
+                Command cmd = new Command(input);
+                cmd.parseInput();
+            }            
+
+            //press enter to exit
+            Console.Read();
         }
     }
 }
