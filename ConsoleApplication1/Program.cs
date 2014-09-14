@@ -15,18 +15,55 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            String start = "";
-            String input = "";
-            Console.WriteLine("Starting point:");
-            start = Console.ReadLine();
-            Point pt = new Point(0, 0);
-            Console.WriteLine("Enter commands. 1 per line. 'help' for info:");
             while (true)
             {
-                input = Console.ReadLine();
-                Command cmd = new Command(input, pt);
-                cmd.parseInput();
-            }            
+                String start = "";
+                String input = "";
+                Console.WriteLine("Starting point:");
+                start = Console.ReadLine();
+                String x = "";
+                String y = "";
+                if ((start.Count(x1 => x1 == '(') == 1) && (start.Count(x1 => x1 == ')') == 1))
+                {
+                    String[] s = start.Split(',');
+
+                    foreach (char c in s[0])
+                    {
+                        if (Char.IsDigit(c) || c == '-')
+                        {
+                            x += c;
+                        }
+                    }
+                    foreach (char c1 in s[1])
+                    {
+                        if (Char.IsDigit(c1) || c1 == '-')
+                        {
+                            y += c1;
+                        }
+                    }
+                    if (x.Length > 0 && y.Length > 0)
+                    {
+                        Point pt = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+                        Console.WriteLine("Enter commands. 1 per line. 'help' for info:");
+                        while (true)
+                        {
+                            input = Console.ReadLine();
+                            Command cmd = new Command(input, pt);
+                            cmd.parseInput();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input");
+                }
+            }
+            
+           
         }
     }
 }

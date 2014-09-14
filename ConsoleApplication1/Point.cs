@@ -25,9 +25,10 @@ namespace ConsoleApplication1
          *  y (int) - the y-coordinate
          */
         public Point(int x, int y)
-        {
+        {            
             this.x = x;
             this.y = y;
+            Console.WriteLine("Point created at (" + x + ", " + y + ")\n");
         }
 
         /*
@@ -45,16 +46,31 @@ namespace ConsoleApplication1
         }
 
         /*
-         * Rotate around (a, b) by the angle c (in radians) clockwise
+         * Rotate around (a, b) by the angle (in radians) clockwise
          * 
          * Parameters:
          *  a (int) - the reference point's x coorindate
          *  b (int) - the reference point's y coordinate
-         *  c (int) - the rotation angle in radians
+         *  angle (int) - the rotation angle in radians
          */ 
-        public void rotate(int a, int b, int c)
+        public void rotate(int a, int b, int angle)
         {
-            Console.WriteLine("rotate command called with (" + a + ", " + b + ", " + c + ")");
+            Console.WriteLine("rotate command called with (" + a + ", " + b + ", " + angle + ")");
+            double s = Math.Sin((double)angle);
+            double c = Math.Cos(angle);
+
+            // translate point back to origin:
+            this.x -= a;
+            this.y -= b;
+
+            // rotate point
+            double xnew = this.x * c - this.y * s;
+            double ynew = this.x * s + this.y * c;
+
+            // translate point back:
+            this.x = (int)xnew + a;
+            this.y = (int)ynew + b;
+
         }
 
         /*
