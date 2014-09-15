@@ -19,7 +19,7 @@ namespace ConsoleApplication1
             {
                 String start = "";
                 String input = "";
-                Console.WriteLine("Starting point:");
+                Console.WriteLine("Starting Point:");
                 start = Console.ReadLine();
                 String x = "";
                 String y = "";
@@ -29,21 +29,21 @@ namespace ConsoleApplication1
 
                     foreach (char c in s[0])
                     {
-                        if (Char.IsDigit(c) || c == '-')
+                        if (Char.IsDigit(c) || c == '-' || c == '.' )
                         {
                             x += c;
                         }
                     }
                     foreach (char c1 in s[1])
                     {
-                        if (Char.IsDigit(c1) || c1 == '-')
+                        if (Char.IsDigit(c1) || c1 == '-' || c1 == '.')
                         {
                             y += c1;
                         }
                     }
                     if (x.Length > 0 && y.Length > 0)
                     {
-                        Point pt = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+                        Point pt = new Point(Convert.ToDouble(x), Convert.ToDouble(y));
                         Console.WriteLine("Enter commands. 1 per line. 'help' for info:");
                         while (true)
                         {

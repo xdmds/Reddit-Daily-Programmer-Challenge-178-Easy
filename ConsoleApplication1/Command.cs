@@ -47,7 +47,7 @@ namespace ConsoleApplication1
                 switch (transformation)
                 {
                     case "translate":
-                        List<int> lst = validate2Args(param);
+                        List<double> lst = validate2Args(param);
 
                         if (lst.Count() == 2)
                         {
@@ -61,7 +61,7 @@ namespace ConsoleApplication1
 
                     case "rotate":
                         Console.WriteLine("rotate command");
-                        List<int> lst1 = validate3Args(param);
+                        List<double> lst1 = validate3Args(param);
                         if (lst1.Count() == 3)
                         {
                             pt.rotate(lst1[0], lst1[1], lst1[2]);
@@ -73,7 +73,7 @@ namespace ConsoleApplication1
                         break;
                     case "scale":
                         Console.WriteLine("scale command");
-                        List<int> lst2 = validate3Args(param);
+                        List<double> lst2 = validate3Args(param);
                         if (lst2.Count() == 3)
                         {
                             pt.scale(lst2[0], lst2[1], lst2[2]);
@@ -152,14 +152,14 @@ namespace ConsoleApplication1
             String digits = "";
             foreach (char c in s.Substring(start, end))
             {
-                if (Char.IsDigit(c) || c == '-')
+                if (Char.IsDigit(c) || c == '-' || c == '.')
                 {
                     digits += c;
                 }
             }
             ArrayList lst = new ArrayList();
             if (digits.Length > 0){
-                lst.Add(Convert.ToInt32(digits));
+                lst.Add(Convert.ToDouble(digits));
                 lst.Add(1);
             }
             else
@@ -180,27 +180,27 @@ namespace ConsoleApplication1
          * Return:
          *  List<int> - a list containing the validated arguments as ints
          */ 
-        public List<int> validate2Args(String param)
+        public List<double> validate2Args(String param)
         {
             if (param.Count(x => x == ',') == 1)
             {
-                int x = 0;
-                int y = 0;
+                double x = 0;
+                double y = 0;
 
-                if ((int)getDigits(param, 0, param.IndexOf(","))[1] == 1)
+                if (Convert.ToDouble(getDigits(param, 0, param.IndexOf(","))[1]) == 1)
                 {
-                    x = (int)getDigits(param, 0, param.IndexOf(","))[0];
-                    if ((int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[1] == 1)
+                    x = (Convert.ToDouble(getDigits(param, 0, param.IndexOf(","))[0]));
+                    if (Convert.ToDouble(getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[1]) == 1)
                     {
-                        y = (int)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[0];
-                        List<int> lst = new List<int>();
+                        y = (double)getDigits(param, param.IndexOf(","), param.Length - param.IndexOf(","))[0];
+                        List<double> lst = new List<double>();
                         lst.Add(x);
                         lst.Add(y);
                         return lst;
                     }
                 }
             }
-            return new List<int>();
+            return new List<double>();
         }
 
                 /*
@@ -212,26 +212,26 @@ namespace ConsoleApplication1
         * Return:
         *  List<int> - a list containing the validated arguments as ints
         */ 
-        public List<int> validate3Args(String param)
+        public List<double> validate3Args(String param)
         {
             if (param.Count(x => x == ',') == 2)
             {
-                int x = 0;
-                int y = 0;
-                int z = 0;
+                double x = 0;
+                double y = 0;
+                double z = 0;
                 String[] s = param.Split(',');
 
-                if ((int)getDigits(s[0], 0, s[0].Length)[1] == 1)
+                if (Convert.ToDouble(getDigits(s[0], 0, s[0].Length)[1]) == 1)
                 {
 
-                    x = (int)getDigits(s[0], 0, s[0].Length)[0];
-                    if ((int)getDigits(s[1], 0, s[1].Length)[1] == 1)
+                    x = Convert.ToDouble(getDigits(s[0], 0, s[0].Length)[0]);
+                    if (Convert.ToDouble(getDigits(s[1], 0, s[1].Length)[1]) == 1)
                     {
-                        y = (int)getDigits(s[1], 0, s[1].Length)[0];
-                        if ((int)getDigits(s[2], 0, s[2].Length)[1] == 1)
+                        y = Convert.ToDouble(getDigits(s[1], 0, s[1].Length)[0]);
+                        if (Convert.ToDouble(getDigits(s[2], 0, s[2].Length)[1]) == 1)
                         {
-                            z = (int)getDigits(s[2], 0, s[2].Length)[0];
-                            List<int> lst = new List<int>();
+                            z = Convert.ToDouble(getDigits(s[2], 0, s[2].Length)[0]);
+                            List<double> lst = new List<double>();
                             lst.Add(x);
                             lst.Add(y);
                             lst.Add(z);
@@ -240,7 +240,7 @@ namespace ConsoleApplication1
                     }
                 }
             }
-            return new List<int>();
+            return new List<double>();
         }
     }
 

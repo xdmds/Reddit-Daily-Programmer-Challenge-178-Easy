@@ -14,17 +14,17 @@ namespace ConsoleApplication1
 {
     class Point
     {
-        private int x;
-        private int y;
+        private double x;
+        private double y;
 
         /*
-         *  Constructs a point object with an x and y coordinate
+         *  Constructs a Point object with an x and y coordinate
          *  
          *  Paramaters:
-         *  x (int) - the x-coordinate
-         *  y (int) - the y-coordinate
+         *  x (double) - the x-coordinate
+         *  y (double) - the y-coordinate
          */
-        public Point(int x, int y)
+        public Point(double x, double y)
         {            
             this.x = x;
             this.y = y;
@@ -36,10 +36,10 @@ namespace ConsoleApplication1
          * Translate by (a, b)
          * 
          * Parameters:
-         *  a (int) - x offset
-         *  b (int) - y offset
+         *  a (double) - x offset
+         *  b (double) - y offset
          */ 
-        public void translate(int a, int b)
+        public void translate(double a, double b)
         {
             this.x = x + a;
             this.y = y + b;
@@ -49,27 +49,27 @@ namespace ConsoleApplication1
          * Rotate around (a, b) by the angle (in radians) clockwise
          * 
          * Parameters:
-         *  a (int) - the reference point's x coorindate
-         *  b (int) - the reference point's y coordinate
-         *  angle (int) - the rotation angle in radians
+         *  a (double) - the reference Point's x coorindate
+         *  b (double) - the reference Point's y coordinate
+         *  angle (double) - the rotation angle in radians
          */ 
-        public void rotate(int a, int b, int angle)
+        public void rotate(double a, double b, double angle)
         {
             Console.WriteLine("rotate command called with (" + a + ", " + b + ", " + angle + ")");
             double s = Math.Sin((double)angle);
             double c = Math.Cos(angle);
 
-            // translate point back to origin:
+            // translate Point back to origin:
             this.x -= a;
             this.y -= b;
 
-            // rotate point
+            // rotate Point
             double xnew = this.x * c - this.y * s;
             double ynew = this.x * s + this.y * c;
 
-            // translate point back:
-            this.x = (int)xnew + a;
-            this.y = (int)ynew + b;
+            // translate Point back:
+            this.x = (double)xnew + a;
+            this.y = (double)ynew + b;
 
         }
 
@@ -77,13 +77,17 @@ namespace ConsoleApplication1
          * scale relative to (a, b) with scale-factor C
          * 
          * Parameters:
-         * a (int) - the relative point's x coordinate
-         * b (int) - the relative point's y coordinate
-         * c (int) - the scale factor
+         * a (double) - the relative Point's x coordinate
+         * b (double) - the relative Point's y coordinate
+         * c (double) - the scale factor
          */ 
-        public void scale(int a, int b, int c)
+        public void scale(double a, double b, double c)
         {
             Console.WriteLine("scale command called with (" + a + ", " + b + ", " + c + ")");
+            double x2 = x - a;
+            double y2 = y - b;
+            this.x = a + (x2 * c);
+            this.y = b + (y2 * c);
         }
 
         /*
@@ -98,17 +102,17 @@ namespace ConsoleApplication1
         }
 
         /*
-         * returns the x coordinate of this point
+         * returns the x coordinate of this Point
          */ 
-        public int getX()
+        public double getX()
         {
             return this.x;
         }
 
         /*
-         * returns the y coordinate of this point
+         * returns the y coordinate of this Point
          */ 
-        public int getY()
+        public double getY()
         {
             return this.y;
         }
