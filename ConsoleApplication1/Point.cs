@@ -42,8 +42,8 @@ namespace ConsoleApplication1
         public void translate(double a, double b)
         {
             //Console.WriteLine("translate command called with (" + a + ", " + b + ")");
-            this.x = x + a;
-            this.y = y + b;
+            this.x += a;
+            this.y += b;
         }
 
         /*
@@ -69,8 +69,8 @@ namespace ConsoleApplication1
             double ynew = this.x * s + this.y * c;
 
             // translate Point back:
-            this.x = (double)xnew + a;
-            this.y = (double)ynew + b;
+            this.x = xnew + a;
+            this.y = ynew + b;
 
         }
 
