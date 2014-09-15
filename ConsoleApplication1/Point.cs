@@ -41,6 +41,7 @@ namespace ConsoleApplication1
          */ 
         public void translate(double a, double b)
         {
+            //Console.WriteLine("translate command called with (" + a + ", " + b + ")");
             this.x = x + a;
             this.y = y + b;
         }
@@ -55,8 +56,8 @@ namespace ConsoleApplication1
          */ 
         public void rotate(double a, double b, double angle)
         {
-            Console.WriteLine("rotate command called with (" + a + ", " + b + ", " + angle + ")");
-            double s = Math.Sin((double)angle);
+            //Console.WriteLine("rotate command called with (" + a + ", " + b + ", " + angle + ")");
+            double s = Math.Sin(angle);
             double c = Math.Cos(angle);
 
             // translate Point back to origin:
@@ -83,7 +84,7 @@ namespace ConsoleApplication1
          */ 
         public void scale(double a, double b, double c)
         {
-            Console.WriteLine("scale command called with (" + a + ", " + b + ", " + c + ")");
+            //Console.WriteLine("scale command called with (" + a + ", " + b + ", " + c + ")");
             double x2 = x - a;
             double y2 = y - b;
             this.x = a + (x2 * c);
@@ -98,7 +99,15 @@ namespace ConsoleApplication1
          */ 
         public void reflect(char axis)
         {
-            Console.WriteLine("reflect command called for " + axis + " axis");
+            //Console.WriteLine("reflect command called for " + axis + " axis");
+            if (axis == 'x')
+            {
+                this.y = this.y * (-1);
+            }
+            else if (axis == 'y')
+            {
+                this.x = this.x * (-1);
+            }
         }
 
         /*

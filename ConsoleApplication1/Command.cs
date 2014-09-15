@@ -60,7 +60,6 @@ namespace ConsoleApplication1
                         break;
 
                     case "rotate":
-                        Console.WriteLine("rotate command");
                         List<double> lst1 = validate3Args(param);
                         if (lst1.Count() == 3)
                         {
@@ -72,7 +71,6 @@ namespace ConsoleApplication1
                         }
                         break;
                     case "scale":
-                        Console.WriteLine("scale command");
                         List<double> lst2 = validate3Args(param);
                         if (lst2.Count() == 3)
                         {
@@ -84,11 +82,10 @@ namespace ConsoleApplication1
                         }
                         break;
                     case "reflect":
-                        Console.WriteLine("reflect command");
                         String axis = "";
                         foreach (char c in param)
                         {
-                            if (c == 'x' || c == 'y')
+                            if (c == 'x' || c == 'X' || c == 'y' || c == 'Y')
                             {
                                 axis += c;
                             }
