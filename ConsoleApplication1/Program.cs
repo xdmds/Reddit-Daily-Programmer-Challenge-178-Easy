@@ -62,8 +62,32 @@ namespace ConsoleApplication1
                     Console.WriteLine("Invalid input");
                 }
             }
-            
-           
         }
+
+        /*
+         * Test case. output should be (-4, -7)
+         */ 
+        /*
+        static void Main(string[] args){
+            Point test_pt = new Point(0,5);
+            test_pt.translate(3,2);
+            Console.WriteLine("(" + test_pt.getX() + ", " + test_pt.getY() + ")");
+            test_pt.scale(1,3,0.5);
+            Console.WriteLine("(" + test_pt.getX() + ", " + test_pt.getY() + ")");
+            test_pt.rotate(3,2,1.57079632679);
+            Console.WriteLine("(" + test_pt.getX() + ", " + test_pt.getY() + ")");
+            test_pt.reflect('x');
+            Console.WriteLine("(" + test_pt.getX() + ", " + test_pt.getY() + ")");
+            test_pt.translate(2,-1);
+            Console.WriteLine("(" + test_pt.getX() + ", " + test_pt.getY() + ")");
+            test_pt.scale(0,0,-0.25);
+            Console.WriteLine("(" + test_pt.getX() + ", " + test_pt.getY() + ")");
+            test_pt.rotate(1,-3,3.14159265359);
+            Console.WriteLine("(" + test_pt.getX() + ", " + test_pt.getY() + ")");
+            test_pt.reflect('y');
+            Console.WriteLine("(" + Math.Round(test_pt.getX()) + ", " + Math.Round(test_pt.getY()) + ")");
+            Console.Read();
+        }
+         */
     }
 }

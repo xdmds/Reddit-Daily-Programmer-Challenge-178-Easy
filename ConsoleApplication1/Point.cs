@@ -56,22 +56,10 @@ namespace ConsoleApplication1
          */ 
         public void rotate(double a, double b, double angle)
         {
-            //Console.WriteLine("rotate command called with (" + a + ", " + b + ", " + angle + ")");
-            double s = Math.Sin(angle);
-            double c = Math.Cos(angle);
-
-            // translate Point back to origin:
-            this.x -= a;
-            this.y -= b;
-
-            // rotate Point
-            double xnew = this.x * c - this.y * s;
-            double ynew = this.x * s + this.y * c;
-
-            // translate Point back:
-            this.x = xnew + a;
-            this.y = ynew + b;
-
+            double temp_x = this.x;
+            double temp_y = this.y;
+            this.x = Math.Cos(angle) * (temp_x - a) + Math.Sin(angle) * (temp_y - b) + a;
+            this.y = -Math.Sin(angle) * (temp_x - a) + Math.Cos(angle) * (temp_y - b) + b;
         }
 
         /*
@@ -102,11 +90,11 @@ namespace ConsoleApplication1
             //Console.WriteLine("reflect command called for " + axis + " axis");
             if (axis == 'x')
             {
-                this.y = this.y * (-1);
+                this.y = -this.y;
             }
             else if (axis == 'y')
             {
-                this.x = this.x * (-1);
+                this.x = -this.x;
             }
         }
 

@@ -113,7 +113,7 @@ namespace ConsoleApplication1
 
                     case "finish":
                         Console.Write("\nResult: ");
-                        Console.WriteLine("(" + pt.getX() + ", " + pt.getY() + ")");
+                        Console.WriteLine("(" + Math.Round(pt.getX()) + ", " + Math.Round(pt.getY()) + ")");
                         break;
                     default:
                         Console.WriteLine("Invalid input");
